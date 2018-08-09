@@ -1,0 +1,47 @@
+<div class="container" ng-controller="DashboardController as $ctrl">
+
+    <h1>Campaigns</h1>
+    <p class="lead">
+        List of your current campaigns.
+    </p>
+
+    <div class="row" ng-if="$ctrl.campaigns">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Goal</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="campaign in $ctrl.campaigns">
+                        <th scope="row">
+                            {{campaign.id}}
+                        </th>
+                        <td>
+                            {{campaign.status.code}}
+                        </td>
+                        <td>
+                            {{campaign.name}}
+                        </td>
+                        <td>
+                            {{campaign.goal}}
+                        </td>
+                        <td>
+                            <button ng-click="$ctrl.viewCampaign(campaign.id)">
+                                View campaign details
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" ng-if="!$ctrl.campaigns">
+        Loading campaign list...
+    </div>
+</div>

@@ -1,0 +1,37 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ../
+      dockerfile: docker/web/Dockerfile
+    restart: always
+    networks:
+      - nanos
+    volumes:
+      - web:/home/nanos
+    ports:
+      - 127.0.0.1:80:80
+
+  redis:
+    image: redis:alpine
+    restart: always
+    networks:
+      - nanos
+
+  pgsql:
+    image: postgres:10.4
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: TuFzaFVNNVTK8xHIkHgNeblIxNQAygUDwq7w7hRtGwanXlOwsT2
+      POSTGRES_DB: nanos
+    ports:
+      - 127.0.0.1:5432:5432
+    networks:
+      - nanos
+
+volumes:
+  web:
+  pgsql:
+
+networks:
+  nanos:
